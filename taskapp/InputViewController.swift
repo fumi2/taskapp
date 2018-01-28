@@ -15,6 +15,7 @@ class InputViewController: UIViewController {
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    var task: Task! //追加する
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -35,6 +35,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let inputViewController: InputViewController = segue.destination as! InputViewController
+        
+        if segue.identifier == "cellSegue" {
+            let indexPath = self.tableView.indexPathForSelectedRow
+            inputViewController.task = taskArray[indexPath!.row]
+        }
+        else {
+            let task = Task()
+            task.date = Date()
+            
+            let taskArray = realm.objects(Task.self)
+            if taskArray.count != 0 {
+                task.id = taskArray.max(ofProperty: "id")! + 1
+            }
+            inputViewController.task = task
+        }
+        
+    }
+    
+    
     // MARK: UITableViewDataSourceプロトコルのメソッド
     // データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
