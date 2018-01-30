@@ -15,6 +15,7 @@
 		EA1AAEEF201DBD5E005878CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA1AAEED201DBD5E005878CC /* LaunchScreen.storyboard */; };
 		EA1AAEF9201DC8D5005878CC /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1AAEF8201DC8D5005878CC /* InputViewController.swift */; };
 		EA6691C2201DD93400AA72FB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6691C1201DD93400AA72FB /* Task.swift */; };
+		EA8C39FD2020B51B00F24879 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8C39FC2020B51B00F24879 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EA1AAEF0201DBD5E005878CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA1AAEF8201DC8D5005878CC /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		EA6691C1201DD93400AA72FB /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		EA8C39FC2020B51B00F24879 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				EA1AAEF0201DBD5E005878CC /* Info.plist */,
 				EA1AAEF8201DC8D5005878CC /* InputViewController.swift */,
 				EA6691C1201DD93400AA72FB /* Task.swift */,
+				EA8C39FC2020B51B00F24879 /* Category.swift */,
 			);
 			path = taskapp;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA6691C2201DD93400AA72FB /* Task.swift in Sources */,
+				EA8C39FD2020B51B00F24879 /* Category.swift in Sources */,
 				EA1AAEF9201DC8D5005878CC /* InputViewController.swift in Sources */,
 				EA1AAEE7201DBD5E005878CC /* ViewController.swift in Sources */,
 				EA1AAEE5201DBD5E005878CC /* AppDelegate.swift in Sources */,
