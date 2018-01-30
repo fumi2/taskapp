@@ -16,6 +16,7 @@
 		EA1AAEF9201DC8D5005878CC /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1AAEF8201DC8D5005878CC /* InputViewController.swift */; };
 		EA6691C2201DD93400AA72FB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6691C1201DD93400AA72FB /* Task.swift */; };
 		EA8C39FD2020B51B00F24879 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8C39FC2020B51B00F24879 /* Category.swift */; };
+		EA8C39FF2020B8F400F24879 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8C39FE2020B8F400F24879 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		EA1AAEF8201DC8D5005878CC /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		EA6691C1201DD93400AA72FB /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		EA8C39FC2020B51B00F24879 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		EA8C39FE2020B8F400F24879 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				EA1AAEF8201DC8D5005878CC /* InputViewController.swift */,
 				EA6691C1201DD93400AA72FB /* Task.swift */,
 				EA8C39FC2020B51B00F24879 /* Category.swift */,
+				EA8C39FE2020B8F400F24879 /* CategoryViewController.swift */,
 			);
 			path = taskapp;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				EA8C39FD2020B51B00F24879 /* Category.swift in Sources */,
 				EA1AAEF9201DC8D5005878CC /* InputViewController.swift in Sources */,
 				EA1AAEE7201DBD5E005878CC /* ViewController.swift in Sources */,
+				EA8C39FF2020B8F400F24879 /* CategoryViewController.swift in Sources */,
 				EA1AAEE5201DBD5E005878CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

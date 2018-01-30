@@ -10,15 +10,25 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class InputViewController: UIViewController {
+class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var createCategory: UIButton!
+    @IBOutlet weak var reviseCategory: UIButton!
     
     var task: Task!
+    var category: Category!
     let realm = try! Realm()
+    
+    // DB内のカテゴリが格納されるリスト。
+    // 名前順でソート。昇順
+    // 以降内容をアップデートするとリスト内は自動的に更新される。
+    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "name", ascending: true)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +41,37 @@ class InputViewController: UIViewController {
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
+        categoryPicker.dataSource = self
+        categoryPicker.delegate = self
     }
 
+    
+    // MARK: UIPickerViewDataSourceプロトコルのメソッド
+    // コンポーネントの数を返すメソッド
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // コンポーネントに含まれるデータの数（＝カテゴリの数）を返すメソッド
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    // MARK: UIPickerViewDelegateプロトコルのメソッド
+    //データを返すメソッド
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryArray[row].categoryName
+    }
+    
+    var selectedCategoryName = ""
+    
+    //選択時の動作
+    func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        selectedCategoryName = categoryArray[row].categoryName
+    }
+ 
+    
+    
     
     @objc func dismissKeyboard(){
         // キーボードを閉じる
@@ -45,6 +84,7 @@ class InputViewController: UIViewController {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
+            self.task.category = self.selectedCategoryName
             self.realm.add(self.task, update: true)
         }
         
