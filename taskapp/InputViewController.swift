@@ -27,7 +27,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     // DB内のカテゴリが格納されるリスト。
     // 名前順でソート。昇順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
-    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "name", ascending: true)
+    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "categoryName", ascending: true)
     
     
     override func viewDidLoad() {
@@ -104,7 +104,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
-            self.task.category = self.selectedCategory
+            self.task.category! = self.selectedCategory
             self.realm.add(self.task, update: true)
         }
         
