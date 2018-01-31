@@ -66,10 +66,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    // 入力画面から戻ってきた時に TableView を更新させる
+    // タスク入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        categoryPickerForSearch.reloadAllComponents()
     }
     
     
@@ -166,11 +167,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    // タスク入力画面から戻ってきた時に PickerView を更新する
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        categoryPickerForSearch.reloadAllComponents()
-    }
+ 
     
     // 「全てのタスク」ボタンを押した時の動作
     @IBAction func allTaskButton(_ sender: Any) {
