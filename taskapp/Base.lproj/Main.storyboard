@@ -217,24 +217,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqt-AT-UMt">
-                                <rect key="frame" x="130" y="150" width="115" height="30"/>
-                                <state key="normal" title="登録/更新"/>
-                                <connections>
-                                    <action selector="createOrRevise:" destination="lVM-xW-WhO" eventType="touchUpInside" id="Ufe-GJ-ZdO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="8mg-gN-F4k" firstAttribute="trailing" secondItem="uqt-AT-UMt" secondAttribute="trailing" constant="130" id="532-7A-rVx"/>
                             <constraint firstItem="hAC-Ex-wZx" firstAttribute="top" secondItem="DjW-rX-zft" secondAttribute="bottom" constant="10" id="Axr-IF-eZC"/>
                             <constraint firstItem="8mg-gN-F4k" firstAttribute="trailing" secondItem="hAC-Ex-wZx" secondAttribute="trailing" constant="10" id="GLi-Bj-ugF"/>
                             <constraint firstItem="hAC-Ex-wZx" firstAttribute="leading" secondItem="8mg-gN-F4k" secondAttribute="leading" constant="10" id="MfH-h5-ngJ"/>
                             <constraint firstItem="DjW-rX-zft" firstAttribute="leading" secondItem="8mg-gN-F4k" secondAttribute="leading" constant="10" id="Wou-rf-9C7"/>
-                            <constraint firstItem="uqt-AT-UMt" firstAttribute="leading" secondItem="8mg-gN-F4k" secondAttribute="leading" constant="130" id="a8d-DF-haD"/>
                             <constraint firstItem="DjW-rX-zft" firstAttribute="top" secondItem="8mg-gN-F4k" secondAttribute="top" constant="10" id="cqV-ih-oFG"/>
-                            <constraint firstItem="uqt-AT-UMt" firstAttribute="top" secondItem="hAC-Ex-wZx" secondAttribute="bottom" constant="15" id="ngU-gj-aQn"/>
                             <constraint firstItem="8mg-gN-F4k" firstAttribute="trailing" secondItem="DjW-rX-zft" secondAttribute="trailing" constant="10" id="rth-0h-jtg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8mg-gN-F4k"/>

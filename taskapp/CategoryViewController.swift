@@ -33,22 +33,24 @@ class CategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // 「登録/更新」ボタンを押した時の動作
-    @IBAction func createOrRevise(_ sender: Any) {
-        try! realm.write {
-            self.category.categoryName = self.categoryName.text!
-            self.realm.add(self.category, update: true)
-        }
-    }
-    
     
     // 遷移する際に、画面が非表示になるとき呼ばれるメソッド
     override func viewWillDisappear(_ animated: Bool) {
-        // データベースから削除する
-        try! realm.write {
-            self.realm.delete(self.category)
-        }
         
+        // カテゴリ名を空欄（nil）にした場合、そのカテゴリを削除する
+        if self.categoryName.text! == nil {
+            // データベースから削除する
+            try! realm.write {
+                self.realm.delete(self.category)
+            }
+        }
+        // カテゴリ名が入力されている場合、そのカテゴリ名で新規登録/更新
+        else {
+            try! realm.write {
+                self.category.categoryName = self.categoryName.text!
+                self.realm.add(self.category, update: true)
+            }
+        }
         super.viewWillDisappear(animated)
     }
     
