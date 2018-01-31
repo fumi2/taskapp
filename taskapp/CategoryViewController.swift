@@ -38,7 +38,7 @@ class CategoryViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         // カテゴリ名を空欄（nil）にした場合、そのカテゴリを削除する
-        if self.categoryName.text! == nil {
+        if self.categoryName.text! == "" {
             // データベースから削除する
             try! realm.write {
                 self.realm.delete(self.category)
