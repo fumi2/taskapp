@@ -83,11 +83,11 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return categoryArray[row].categoryName
     }
     
-    var selectedCategoryName = ""
+    var selectedCategory = Category()
     
     //選択時の動作
     func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        selectedCategoryName = categoryArray[row].categoryName
+        selectedCategory = categoryArray[row]
     }
  
     
@@ -104,7 +104,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
-            self.task.category = self.selectedCategoryName
+            self.task.category = self.selectedCategory
             self.realm.add(self.task, update: true)
         }
         
