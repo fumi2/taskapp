@@ -137,6 +137,9 @@
                                     <constraint firstAttribute="width" constant="65" id="hdG-lz-LsW"/>
                                 </constraints>
                                 <state key="normal" title="編集"/>
+                                <connections>
+                                    <segue destination="lVM-xW-WhO" kind="show" identifier="reviseCategorySegue" id="l0a-2v-Zkj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sh0-R9-H76">
                                 <rect key="frame" x="80" y="627" width="65" height="30"/>
@@ -145,7 +148,7 @@
                                 </constraints>
                                 <state key="normal" title="新規作成"/>
                                 <connections>
-                                    <segue destination="lVM-xW-WhO" kind="show" id="wnc-iR-8Kf"/>
+                                    <segue destination="lVM-xW-WhO" kind="show" identifier="" id="wnc-iR-8Kf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -217,6 +220,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqt-AT-UMt">
                                 <rect key="frame" x="130" y="150" width="115" height="30"/>
                                 <state key="normal" title="登録/更新"/>
+                                <connections>
+                                    <action selector="createOrRevise:" destination="lVM-xW-WhO" eventType="touchUpInside" id="Ufe-GJ-ZdO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -261,6 +267,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="l0a-2v-Zkj"/>
         <segue reference="4Ro-c9-84F"/>
     </inferredMetricsTieBreakers>
 </document>

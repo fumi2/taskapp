@@ -45,6 +45,26 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         categoryPicker.delegate = self
     }
 
+    // カテゴリ登録/編集ページに画面遷移する時にデータを渡す
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let categoryViewController: CategoryViewController = segue.destination as! CategoryViewController
+        
+        if segue.identifier == "reviseCategorySegue" {
+            let selectedRow = self.categoryPicker.selectedRow(inComponent: 0)
+            categoryViewController.category = categoryArray[selectedRow]
+        }
+        else {
+            let category = Category()
+            
+            let categoryArray = realm.objects(Category.self)
+            if categoryArray.count != 0 {
+                category.id = categoryArray.max(ofProperty: "id")! + 1
+            }
+            categoryViewController.category = category
+        }
+        
+    }
+    
     
     // MARK: UIPickerViewDataSourceプロトコルのメソッド
     // コンポーネントの数を返すメソッド
@@ -145,6 +165,11 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Dispose of any resources that can be recreated.
     }
     
+    // カテゴリ入力画面から戻ってきた時に PickerView を更新する
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        categoryPicker.reloadAllComponents()
+    }
 
     /*
     // MARK: - Navigation

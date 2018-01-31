@@ -11,12 +11,21 @@ import RealmSwift
 
 class CategoryViewController: UIViewController {
 
+    var category: Category!
+    let realm = try! Realm()
+    
     @IBOutlet weak var categoryName: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+        
+        self.categoryName.text = category.categoryName
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +33,31 @@ class CategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // 「登録/更新」ボタンを押した時の動作
+    @IBAction func createOrRevise(_ sender: Any) {
+        try! realm.write {
+            self.category.categoryName = self.categoryName.text!
+            self.realm.add(self.category, update: true)
+        }
+    }
+    
+    
+    // 遷移する際に、画面が非表示になるとき呼ばれるメソッド
+    override func viewWillDisappear(_ animated: Bool) {
+        // データベースから削除する
+        try! realm.write {
+            self.realm.delete(self.category)
+        }
+        
+        super.viewWillDisappear(animated)
+    }
+    
 
+    @objc func dismissKeyboard(){
+        // キーボードを閉じる
+        view.endEditing(true)
+    }
+    
     /*
     // MARK: - Navigation
 
