@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Ev-Tn-IVm">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="237" width="375" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="1Ss-hI-I4a" detailTextLabel="fg9-4J-Y1Y" style="IBUITableViewCellStyleSubtitle" id="SIQ-jn-uZ9">
@@ -48,21 +48,41 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Im0-lS-fFO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリで絞込" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldN-5f-mPw">
+                                <rect key="frame" x="10" y="114" width="355" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cB-Dw-UWY">
+                                <rect key="frame" x="10" y="74" width="355" height="30"/>
+                                <state key="normal" title="全てのタスク"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="CUz-ve-GzL"/>
+                                    <action selector="allTaskButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I90-Yt-dZ4"/>
                                 </connections>
-                            </searchBar>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjr-Q3-NaS">
+                                <rect key="frame" x="0.0" y="137" width="375" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="fWk-Hh-xkM"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ldN-5f-mPw" firstAttribute="top" secondItem="7cB-Dw-UWY" secondAttribute="bottom" constant="10" id="6q1-Rb-h8n"/>
                             <constraint firstItem="2Ev-Tn-IVm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="87f-E6-51p"/>
+                            <constraint firstItem="7cB-Dw-UWY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Ah9-Xt-XDV"/>
+                            <constraint firstItem="2Ev-Tn-IVm" firstAttribute="top" secondItem="jjr-Q3-NaS" secondAttribute="bottom" id="Bxp-MY-U8h"/>
+                            <constraint firstItem="ldN-5f-mPw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="CNb-Fi-Jdc"/>
+                            <constraint firstItem="jjr-Q3-NaS" firstAttribute="top" secondItem="ldN-5f-mPw" secondAttribute="bottom" constant="5" id="CZ2-UR-Ycp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ldN-5f-mPw" secondAttribute="trailing" constant="10" id="CbQ-DO-9tD"/>
                             <constraint firstItem="2Ev-Tn-IVm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Xqb-gc-1bM"/>
-                            <constraint firstItem="2Ev-Tn-IVm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="120" id="jBl-UY-5Iu"/>
+                            <constraint firstItem="7cB-Dw-UWY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="fwv-0d-ffm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7cB-Dw-UWY" secondAttribute="trailing" constant="10" id="nYe-Bx-WJp"/>
+                            <constraint firstItem="jjr-Q3-NaS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rp0-Lf-6qj"/>
                             <constraint firstItem="2Ev-Tn-IVm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="s9D-se-f15"/>
+                            <constraint firstItem="jjr-Q3-NaS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ynw-mb-1Qq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -74,6 +94,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="categoryPickerForSearch" destination="jjr-Q3-NaS" id="X5Q-D4-MBl"/>
                         <outlet property="searchDisplayController" destination="tcq-ur-rov" id="dI2-8U-bYk"/>
                         <outlet property="tableView" destination="2Ev-Tn-IVm" id="Omg-1C-Sef"/>
                         <segue destination="e7y-OZ-3ZW" kind="show" identifier="cellSegue" id="4Ro-c9-84F"/>
@@ -83,7 +104,6 @@
                 <searchDisplayController id="tcq-ur-rov">
                     <connections>
                         <outlet property="delegate" destination="BYZ-38-t0r" id="bUv-Dw-b22"/>
-                        <outlet property="searchBar" destination="Im0-lS-fFO" id="xlH-i8-06T"/>
                         <outlet property="searchContentsController" destination="BYZ-38-t0r" id="KT7-bT-eE7"/>
                         <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="f1z-6N-P9e"/>
                         <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="a8a-H1-xzV"/>

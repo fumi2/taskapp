@@ -10,9 +10,12 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var categoryPickerForSearch: UIPickerView!
+    
+    
     
     // Realmインスタンスを取得する
     let realm = try! Realm()
@@ -22,6 +25,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
   
+    // DB内のカテゴリが格納されるリスト。
+    // 名前順でソート。昇順
+    // 以降内容をアップデートするとリスト内は自動的に更新される。
+    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "categoryName", ascending: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +36,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        categoryPickerForSearch.dataSource = self
+        categoryPickerForSearch.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,6 +99,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    // MARK: UIPickerViewDataSourceプロトコルのメソッド
+    // コンポーネントの数を返すメソッド
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // コンポーネントに含まれるデータの数（＝カテゴリの数）を返すメソッド
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    // MARK: UIPickerViewDelegateプロトコルのメソッド
+    //データを返すメソッド
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryArray[row].categoryName
+    }
+    
+    var selectedCategory = Category()
+    
+    //選択時の動作
+    func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        selectedCategory = categoryArray[row]
+        self.taskArray = self.realm.objects(Task.self).filter("category = \(selectedCategory)").sorted(byKeyPath: "date", ascending: false)
+    }
+    
+    
     // MARK: UITableViewDelegateプロトコルのメソッド
     // 各セルを選択した時に実行されるメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -128,6 +164,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
             }
         }
+    }
+    
+    // タスク入力画面から戻ってきた時に PickerView を更新する
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        categoryPickerForSearch.reloadAllComponents()
+    }
+    
+    // 「全てのタスク」ボタンを押した時の動作
+    @IBAction func allTaskButton(_ sender: Any) {
+        self.taskArray = self.realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false)
     }
     
 }
