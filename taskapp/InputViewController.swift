@@ -27,7 +27,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     // DB内のカテゴリが格納されるリスト。
     // 名前順でソート。昇順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
-    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "categoryName", ascending: true)
+    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "id", ascending: true)
     
     
     override func viewDidLoad() {
@@ -43,6 +43,8 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         datePicker.date = task.date
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
+        categoryPicker.selectRow(task.category, inComponent: 0, animated: false)
+        
     }
 
     // カテゴリ登録/編集ページに画面遷移する時にデータを渡す
@@ -83,12 +85,11 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return categoryArray[row].categoryName
     }
     
-    var selectedCategory = Category()
     
     //選択時の動作
-    func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        selectedCategory = categoryArray[row]
-    }
+    //func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    //    self.task.category = categoryArray[row].id
+    //}
  
     
     
@@ -104,7 +105,10 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
-            self.task.category! = self.selectedCategory
+            //選択時の動作
+            func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+                self.task.category = categoryArray[row].id
+            }
             self.realm.add(self.task, update: true)
         }
         

@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // DB内のカテゴリが格納されるリスト。
     // 名前順でソート。昇順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
-    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "categoryName", ascending: true)
+    var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "id", ascending: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,12 +117,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return categoryArray[row].categoryName
     }
     
-    var selectedCategory = Category()
     
     //選択時の動作
     func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        selectedCategory = categoryArray[row]
-        self.taskArray = self.realm.objects(Task.self).filter("category = \(selectedCategory)").sorted(byKeyPath: "date", ascending: false)
+        self.taskArray = self.realm.objects(Task.self).filter("category = \(categoryArray[row].id)").sorted(byKeyPath: "date", ascending: false)
+        tableView.reloadData()
     }
     
     
@@ -172,6 +171,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 「全てのタスク」ボタンを押した時の動作
     @IBAction func allTaskButton(_ sender: Any) {
         self.taskArray = self.realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+        tableView.reloadData()
     }
     
 }
