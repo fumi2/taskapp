@@ -20,15 +20,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Realmインスタンスを取得する
     let realm = try! Realm()
     
+    var selectedCategoryId:Int!
+    
+    
     // DB内のタスクが格納されるリスト。
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
   
+    
+    //選択時の動作
+    func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        
+        
+        self.selectedCategoryId = categoryArray[row].id
+        self.taskArray = self.realm.objects(Task.self).filter("category = %@", categoryArray[row].id).sorted(byKeyPath: "date", ascending: false)
+        self.tableView.reloadData()
+    }
+    
+    
     // DB内のカテゴリが格納されるリスト。
     // 名前順でソート。昇順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var categoryArray = try! Realm().objects(Category.self).sorted(byKeyPath: "id", ascending: true)
+    
+    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         categoryPickerForSearch.dataSource = self
         categoryPickerForSearch.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,11 +136,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    //選択時の動作
-    func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        self.taskArray = self.realm.objects(Task.self).filter("category = \(categoryArray[row].id)").sorted(byKeyPath: "date", ascending: false)
-        tableView.reloadData()
-    }
+    
     
     
     // MARK: UITableViewDelegateプロトコルのメソッド

@@ -21,7 +21,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var reviseCategory: UIButton!
     
     var task: Task!
-    var category: Category!
+    //var category: Category!
     let realm = try! Realm()
     
     // DB内のカテゴリが格納されるリスト。
@@ -85,11 +85,6 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return categoryArray[row].categoryName
     }
     
-    
-    //選択時の動作
-    //func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-    //    self.task.category = categoryArray[row].id
-    //}
  
     
     
@@ -105,10 +100,10 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
-            //選択時の動作
-            func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-                self.task.category = categoryArray[row].id
-            }
+            
+            let selectedRow = self.categoryPicker.selectedRow(inComponent: 0)
+            self.task.category = categoryArray[selectedRow].id
+            
             self.realm.add(self.task, update: true)
         }
         
