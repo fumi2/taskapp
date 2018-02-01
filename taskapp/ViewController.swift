@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Realmインスタンスを取得する
     let realm = try! Realm()
     
-    var selectedCategoryId:Int!
+   // var selectedCategoryId:Int!
     
     
     // DB内のタスクが格納されるリスト。
@@ -30,10 +30,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
     
     //選択時の動作
-    func pickerView(namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         
-        
-        self.selectedCategoryId = categoryArray[row].id
+        //self.selectedCategoryId = categoryArray[row].id
         self.taskArray = self.realm.objects(Task.self).filter("category = %@", categoryArray[row].id).sorted(byKeyPath: "date", ascending: false)
         self.tableView.reloadData()
     }
